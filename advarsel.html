@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <title>Advarsel – Phishing Tjek</title>
+  <link rel="icon" href="icons/icon32.png">
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+    /* Rød advarsel */
+    body.roed { background: #7a1010; color: white; }
+    body.roed #tilbage { background: white; color: #7a1010; }
+    body.roed #fortsaet { color: #ffd6d6; border-color: #ffd6d6; }
+
+    /* Gul advarsel */
+    body.gul { background: #fff3cd; color: #4a3500; }
+    body.gul #tilbage { background: #4a3500; color: #fff3cd; }
+    body.gul #fortsaet { color: #4a3500; border-color: #4a3500; }
+
+    .boks { max-width: 620px; padding: 32px; }
+    img { width: 72px; }
+    h1 { font-size: 2rem; margin: 16px 0 8px; }
+    #adresse {
+      display: block;
+      margin: 16px 0;
+      padding: 10px 14px;
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+      word-break: break-all;
+      font-family: Consolas, monospace;
+    }
+    #destination { word-break: break-all; font-weight: 600; }
+    li { margin: 6px 0; }
+    .knapper { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
+    button {
+      padding: 12px 22px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    #tilbage { border: none; font-weight: 700; }
+    #fortsaet { background: transparent; border: 1px solid; }
+  </style>
+</head>
+<body>
+  <div class="boks">
+    <img src="icons/icon128.png" alt="">
+    <h1 id="overskrift"></h1>
+    <p id="beskrivelse"></p>
+    <code id="adresse"></code>
+    <p id="destination"></p>
+    <p><b>Derfor:</b></p>
+    <ul id="grunde"></ul>
+    <div class="knapper">
+      <button id="tilbage">Gå tilbage</button>
+      <button id="fortsaet">Fortsæt alligevel</button>
+    </div>
+  </div>
+  <script src="checks.js"></script>
+  <script src="advarsel.js"></script>
+</body>
+</html>

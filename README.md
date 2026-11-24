@@ -22,6 +22,15 @@ Browser extension that checks links for phishing. Paste a link, and it tells you
 4. Click **Load unpacked** and choose the unzipped `link-check-main` folder.
 5. Click the puzzle icon next to the address bar and pin **Phishing Tjek**.
 
+## Features
+
+- **Check any link:** click the cube icon, paste a link and press **Tjek link**.
+- **Automatic checks:** every page you open is checked in the background. A red **!** or yellow **?** badge appears on the icon.
+- **Warning pages:** dangerous (red) and suspicious (yellow) sites show a warning before they open, with the reasons and a choice to go back or continue.
+- **Short links:** for bit.ly, tinyurl and similar, it finds out where the link really leads and checks that too.
+
+Works in Chrome, Edge, Brave, Opera and Vivaldi.
+
 ## How to use it
 
 Click the cube icon, paste a link and press **Tjek link**:
@@ -29,3 +38,7 @@ Click the cube icon, paste a link and press **Tjek link**:
 - 🟢 **Looks safe:** no warning signs found
 - 🟡 **Be careful:** one or two warning signs
 - 🔴 **Probably phishing:** several warning signs, don't open the link
+
+## Privacy
+
+The extension reads the address of the pages you visit, and looks up where short links lead. All checks happen on your own computer. Nothing is saved, and nothing is sent to us or anyone else.
