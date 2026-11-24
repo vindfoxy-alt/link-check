@@ -6,6 +6,8 @@
 
 Browser extension that checks links for phishing. Paste a link, and it tells you whether it looks safe, suspicious or dangerous, and why.
 
+**Try it online without installing:** [vindfoxy-alt.github.io/link-check](https://vindfoxy-alt.github.io/link-check/)
+
 <p align="center">
   <a href="https://github.com/vindfoxy-alt/link-check/archive/refs/heads/main.zip">
     <img src="https://img.shields.io/badge/Download-Extension-1a9ec2?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Download the extension">
