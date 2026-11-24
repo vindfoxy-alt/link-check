@@ -1,0 +1,9 @@
+{
+  "manifest_version": 3,
+  "name": "Phishing Tjek",
+  "version": "1.0",
+  "description": "Tjek om et link ser mistænkeligt ud",
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
