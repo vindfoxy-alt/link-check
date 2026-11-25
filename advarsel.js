@@ -65,20 +65,22 @@ async function tjekDestination() {
 tjekDestination();
 
 // "Gå tilbage"
-document.getElementById("tilbage").addEventListener("click", () => {
+document.getElementById("tilbage").addEventListener("click", async () => {
   if (history.length > 1) {
     history.back();
   } else {
-    chrome.tabs.update({ url: "chrome://newtab" });
+    // Ingen side at gå tilbage til: luk fanen (virker i både Chrome og Firefox)
+    const fane = await api.tabs.getCurrent();
+    api.tabs.remove(fane.id);
   }
 });
 
 // "Fortsæt alligevel": husk siden, så den ikke bliver blokeret igen, og åbn den
 document.getElementById("fortsaet").addEventListener("click", async () => {
   const host = new URL(farligUrl).hostname;
-  const gemt = await chrome.storage.session.get("tilladte");
+  const gemt = await api.storage.session.get("tilladte");
   const tilladte = gemt.tilladte || [];
   tilladte.push(host);
-  await chrome.storage.session.set({ tilladte: tilladte });
+  await api.storage.session.set({ tilladte: tilladte });
   location.href = farligUrl;
 });

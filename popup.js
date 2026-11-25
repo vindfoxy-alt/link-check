@@ -59,6 +59,6 @@ const indstillingerLink = document.getElementById("indstillinger");
 if (indstillingerLink) {
   indstillingerLink.addEventListener("click", (event) => {
     event.preventDefault();
-    chrome.runtime.openOptionsPage();
+    api.runtime.openOptionsPage();
   });
 }

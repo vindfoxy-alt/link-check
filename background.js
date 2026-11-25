@@ -1,25 +1,26 @@
-importScripts("checks.js");
+// Chrome henter checks.js her. Firefox henter den selv via "scripts" i manifest.json
+if (typeof importScripts === "function") importScripts("checks.js");
 
 // 1) Badge på ikonet (som før)
-chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
+api.tabs.onUpdated.addListener((tabId, changeInfo) => {
   if (!changeInfo.url) return;
   if (!changeInfo.url.startsWith("http")) return;
 
   const svar = checkLink(changeInfo.url);
 
   if (svar === null || svar.point === 0) {
-    chrome.action.setBadgeText({ tabId: tabId, text: "" });
+    api.action.setBadgeText({ tabId: tabId, text: "" });
   } else if (svar.point >= 3) {
-    chrome.action.setBadgeText({ tabId: tabId, text: "!" });
-    chrome.action.setBadgeBackgroundColor({ tabId: tabId, color: "#d93025" });
+    api.action.setBadgeText({ tabId: tabId, text: "!" });
+    api.action.setBadgeBackgroundColor({ tabId: tabId, color: "#d93025" });
   } else {
-    chrome.action.setBadgeText({ tabId: tabId, text: "?" });
-    chrome.action.setBadgeBackgroundColor({ tabId: tabId, color: "#f9ab00" });
+    api.action.setBadgeText({ tabId: tabId, text: "?" });
+    api.action.setBadgeBackgroundColor({ tabId: tabId, color: "#f9ab00" });
   }
 });
 
 // 2) Advarselsside, før en farlig side åbner
-chrome.webNavigation.onBeforeNavigate.addListener(async (details) => {
+api.webNavigation.onBeforeNavigate.addListener(async (details) => {
   if (details.frameId !== 0) return;               // kun selve siden, ikke reklamer og iframes
   if (!details.url.startsWith("http")) return;
 
@@ -36,27 +37,27 @@ chrome.webNavigation.onBeforeNavigate.addListener(async (details) => {
 
   // Gule sider får kun en advarsel, hvis brugeren har slået det til
   if (svar.point < 3 && !google) {
-    const indstillinger = await chrome.storage.sync.get({ gulAdvarsel: false });
+    const indstillinger = await api.storage.sync.get({ gulAdvarsel: false });
     if (!indstillinger.gulAdvarsel) return;
   }
 
   // Har brugeren allerede valgt "Fortsæt alligevel" for denne side?
   const host = new URL(details.url).hostname;
-  const gemt = await chrome.storage.session.get("tilladte");
+  const gemt = await api.storage.session.get("tilladte");
   const tilladte = gemt.tilladte || [];
   if (tilladte.includes(host)) return;
 
   if (google) {
-    chrome.action.setBadgeText({ tabId: details.tabId, text: "!" });
-    chrome.action.setBadgeBackgroundColor({ tabId: details.tabId, color: "#d93025" });
+    api.action.setBadgeText({ tabId: details.tabId, text: "!" });
+    api.action.setBadgeBackgroundColor({ tabId: details.tabId, color: "#d93025" });
   }
 
-  const advarsel = chrome.runtime.getURL("advarsel.html") + "?url=" + encodeURIComponent(details.url) + (google ? "&google=1" : "");
-  chrome.tabs.update(details.tabId, { url: advarsel });
+  const advarsel = api.runtime.getURL("advarsel.html") + "?url=" + encodeURIComponent(details.url) + (google ? "&google=1" : "");
+  api.tabs.update(details.tabId, { url: advarsel });
 });
 
 // 3) Lille gul boks på siden, når gul advarsel er slået fra
-chrome.webNavigation.onCompleted.addListener(async (details) => {
+api.webNavigation.onCompleted.addListener(async (details) => {
   if (details.frameId !== 0) return;
   if (!details.url.startsWith("http")) return;
 
@@ -64,10 +65,10 @@ chrome.webNavigation.onCompleted.addListener(async (details) => {
   if (svar === null || svar.point === 0 || svar.point >= 3) return;  // kun gule sider
 
   // Er den store gule advarsel slået til, får brugeren den i stedet
-  const indstillinger = await chrome.storage.sync.get({ gulAdvarsel: false });
+  const indstillinger = await api.storage.sync.get({ gulAdvarsel: false });
   if (indstillinger.gulAdvarsel) return;
 
-  chrome.scripting.executeScript({
+  api.scripting.executeScript({
     target: { tabId: details.tabId },
     func: visGulBoks,
     args: [svar.grunde]
@@ -93,6 +94,7 @@ function visGulBoks(grunde) {
       }
       b { display: block; margin-bottom: 4px; }
       ul { margin: 6px 0 0; padding-left: 18px; font-size: 13px; }
+      a { display: inline-block; margin-top: 8px; font-size: 13px; color: #4a3500; font-weight: 600; }
       button {
         position: absolute; top: 6px; right: 8px;
         border: none; background: none; font-size: 18px; cursor: pointer; color: #4a3500;
@@ -103,6 +105,7 @@ function visGulBoks(grunde) {
       <b>⚠️ Vær forsigtig på denne side</b>
       Phishing Tjek har fundet nogle advarselstegn:
       <ul></ul>
+      <a href="https://vindfoxy-alt.github.io/link-check/hvorfor.html" target="_blank">Hvorfor er det farligt? →</a>
     </div>`;
 
   const liste = skygge.querySelector("ul");

@@ -22,6 +22,15 @@ Browser extension that checks links for phishing. Paste a link, and it tells you
 4. Click **Load unpacked** and choose the unzipped `link-check-main` folder.
 5. Click the puzzle icon next to the address bar and pin **Phishing Tjek**.
 
+### Firefox
+
+1. Click **Download Extension** above and unzip the file.
+2. Go to `about:debugging` → **This Firefox** → **Load Temporary Add-on**.
+3. Choose the `manifest.json` file in the unzipped folder.
+4. If short links or red link frames do not work, open **Add-ons and themes** → **Phishing Tjek** → **Permissions**, and allow access to all websites.
+
+A temporary add-on is removed when Firefox closes, so repeat this next time. Installing it permanently requires Mozilla to sign it.
+
 ## Features
 
 - **Check any link:** click the cube icon, paste a link and press **Tjek link**.
@@ -32,7 +41,7 @@ Browser extension that checks links for phishing. Paste a link, and it tells you
 - **Your choice for yellow pages:** in **⚙ Indstillinger** you choose between a full warning page or a small yellow box in the corner.
 - **Test site:** try it all on the [test page](https://vindfoxy-alt.github.io/link-check/), linked from the popup.
 
-Works in Chrome, Edge, Brave, Opera and Vivaldi.
+Works in Chrome, Edge, Brave, Opera, Vivaldi and Firefox (121 or newer).
 
 ## How to use it
 
