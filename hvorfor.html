@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hvorfor er det farligt? – Link Check</title>
+  <link rel="icon" href="icons/icon32.png">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: #e8f4fa;
+      background: radial-gradient(circle at 50% 0%, #16314a 0%, #0b1626 60%);
+      min-height: 100vh;
+      padding: 40px 20px 60px;
+    }
+    .side { max-width: 760px; margin: 0 auto; }
+    .top { display: flex; align-items: center; gap: 14px; }
+    .top img { width: 56px; filter: drop-shadow(0 0 12px rgba(63, 230, 255, 0.4)); }
+    .tilbage { color: #9fc3d6; font-size: 0.9rem; text-decoration: none; }
+    .tilbage:hover { color: #c4fcff; }
+    h1 { font-size: 2rem; margin: 18px 0 8px; }
+    .intro { color: #9fc3d6; line-height: 1.6; margin: 0 0 28px; }
+
+    .adresse-boks {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(63, 230, 255, 0.25);
+      border-radius: 14px;
+      padding: 20px 22px;
+      margin-bottom: 28px;
+    }
+    .adresse-boks h2 { margin: 0 0 10px; font-size: 1.2rem; }
+    .adresse {
+      font-family: Consolas, monospace;
+      font-size: 1.05rem;
+      background: #0e2034;
+      padding: 10px 12px;
+      border-radius: 8px;
+      word-break: break-all;
+    }
+    .adresse .dom { color: #0b1626; background: #c4fcff; border-radius: 4px; padding: 1px 3px; font-weight: 700; }
+    .adresse-boks p { color: #c4e7f5; line-height: 1.6; margin: 12px 0 0; }
+
+    .kort {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(63, 230, 255, 0.18);
+      border-radius: 14px;
+      padding: 18px 22px;
+      margin-bottom: 16px;
+    }
+    .kort-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .kort h3 { margin: 0; font-size: 1.15rem; }
+    .point { font-size: 0.75rem; font-weight: 700; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+    .p1 { background: #fff3cd; color: #4a3500; }
+    .p2 { background: #ffe0b8; color: #5a2d00; }
+    .p3 { background: #f8d7da; color: #7a1010; }
+    .eksempel {
+      display: inline-block;
+      margin: 10px 0 4px;
+      font-family: Consolas, monospace;
+      font-size: 0.9rem;
+      background: #0e2034;
+      padding: 4px 8px;
+      border-radius: 6px;
+      word-break: break-all;
+    }
+    .kort h4 { margin: 12px 0 4px; font-size: 0.9rem; color: #9fc3d6; text-transform: uppercase; letter-spacing: 0.04em; }
+    .kort p { margin: 0; line-height: 1.6; color: #e0eef5; }
+
+    .hvis-klikket {
+      background: rgba(248, 215, 218, 0.08);
+      border: 1px solid rgba(248, 215, 218, 0.35);
+      border-radius: 14px;
+      padding: 20px 22px;
+      margin-top: 28px;
+    }
+    .hvis-klikket h2 { margin: 0 0 10px; font-size: 1.2rem; }
+    .hvis-klikket ol { margin: 0; padding-left: 20px; line-height: 1.8; color: #e0eef5; }
+    .note { margin-top: 28px; font-size: 0.85rem; color: #7fa2b6; text-align: center; line-height: 1.5; }
+    a { color: #c4fcff; }
+  </style>
+</head>
+<body>
+  <div class="side">
+    <div class="top">
+      <img src="icons/logo.svg" alt="Link Check logo">
+      <a class="tilbage" href="index.html">← Tilbage til Link Check</a>
+    </div>
+
+    <h1>Hvorfor er det farligt?</h1>
+    <p class="intro">
+      Phishing Tjek kigger efter advarselstegn i selve adressen. Her kan du læse, hvad hvert tegn betyder,
+      hvorfor svindlere bruger det, og hvordan du selv kan opdage det næste gang.
+      Ét tegn alene betyder ikke altid svindel, men jo flere tegn, jo større er risikoen.
+    </p>
+
+    <div class="adresse-boks">
+      <h2>Først: sådan læser du en adresse</h2>
+      <div class="adresse">https://login.mitid.dk.<span class="dom">sikker-konto.example</span>/verify</div>
+      <p>
+        Det, der bestemmer hvilken hjemmeside du kommer til, er <b>domænet</b>: de sidste to dele før den første
+        skråstreg <b>/</b>. Læs altid adressen <b>fra højre mod venstre</b> op til skråstregen. Her er domænet
+        <b>sikker-konto.example</b>, ikke mitid.dk. Alt foran domænet kan ejeren selv vælge, og det er dér, svindlere gemmer kendte navne.
+      </p>
+    </div>
+
+    <div class="kort">
+      <div class="kort-top"><h3>Adressen ligner et kendt firma</h3><span class="point p3">3 point</span></div>
+      <span class="eksempel">paypa1-login.example</span>
+      <h4>Hvorfor er det farligt?</h4>
+      <p>Det er det mest almindelige phishing-trick. Svindleren laver en adresse, der næsten ligner den rigtige,
+        f.eks. med tallet 1 i stedet for bogstavet l, eller med et ekstra ord som "login" eller "sikker". Ved et hurtigt blik
+        ser det ægte ud, og siden ligner ofte den rigtige ned til logoet.</p>
+      <h4>Sådan tjekker du selv</h4>
+      <p>Læs domænet bogstav for bogstav. Er du i tvivl, så skriv selv den adresse, du kender, i adresselinjen,
+        i stedet for at klikke på linket.</p>
+    </div>
+
+    <div class="kort">
+      <div class="kort-top"><h3>IP-adresse i stedet for et navn</h3><span class="point p2">2 point</span></div>
+      <span class="eksempel">http://192.0.2.1/login</span>
+      <h4>Hvorfor er det farligt?</h4>
+      <p>Rigtige firmaer bruger et navn, som du kan genkende. En adresse med kun tal skjuler, hvem der står bag,
+        og bruges ofte på hurtigt opsatte svindelsider.</p>
+      <h4>Sådan tjekker du selv</h4>
+      <p>Er adressen bare fire tal med punktummer, så lad være med at logge ind eller indtaste oplysninger.</p>
+    </div>
+
+    <div class="kort">
+      <div class="kort-top"><h3>Snabel-a (@) i linket</h3><span class="point p2">2 point</span></div>
+      <span class="eksempel">http://mitid.dk@mitid-login.invalid</span>
+      <h4>Hvorfor er det farligt?</h4>
+      <p>Browseren ignorerer alt, der står før @. Linket herover fører derfor ikke til mitid.dk, men til
+        mitid-login.invalid. Det kendte navn foran er kun pynt, der skal snyde dig.</p>
+      <h4>Sådan tjekker du selv</h4>
+      <p>Ser du et @ i en webadresse (ikke en e-mailadresse), så se på det, der står <b>efter</b> @. Det er den rigtige adresse.</p>
+    </div>
+
+    <div class="kort">
+      <div class="kort-top"><h3>Ingen https</h3><span class="point p1">1 point</span></div>
+      <span class="eksempel">http://example.com</span>
+      <h4>Hvorfor er det farligt?</h4>
+      <p>Uden https bliver det, du skriver, sendt ukrypteret, så andre på samme netværk kan læse det.
+        Næsten alle rigtige login- og betalingssider bruger https. Men pas på: <b>https betyder ikke, at siden er ægte</b>.
+        Svindlere kan også få https. Det betyder kun, at forbindelsen er krypteret.</p>
+      <h4>Sådan tjekker du selv</h4>
+      <p>Indtast aldrig adgangskoder eller kortoplysninger på en side, der starter med http:// uden s.</p>
+    </div>
+
+    <div class="kort">
+      <div class="kort-top"><h3>Mange underdomæner</h3><span class="point p1">1 point</span></div>
+      <span class="eksempel">mitid.dk.secure-check.invalid</span>
+      <h4>Hvorfor er det farligt?</h4>
+      <p>Svindleren sætter et kendt navn forrest i adressen, fordi folk læser fra venstre. Men den rigtige
+        hjemmeside er den sidste del, her secure-check.invalid. Lange adresser med mange punktummer er også sværere at gennemskue.</p>
+      <h4>Sådan tjekker du selv</h4>
+      <p>Find den første skråstreg, og læs baglæns derfra. De to sidste dele er det rigtige domæne.</p>
+    </div>
+
+    <div class="kort">
+      <div class="kort-top"><h3>Mistænkelig endelse</h3><span class="point p1">1 point</span></div>
+      <span class="eksempel">.xyz, .top, .click</span>
+      <h4>Hvorfor er det farligt?</h4>
+      <p>Nogle endelser er meget billige eller nemme at få, og bliver derfor ofte brugt til svindelsider, der
+        kun skal leve i kort tid. Danske banker, MitID og offentlige myndigheder bruger typisk .dk.</p>
+      <h4>Sådan tjekker du selv</h4>
+      <p>Undrer du dig over endelsen på en side, der siger, den er dansk, så vær ekstra forsigtig.
+        Mange ærlige sider bruger også disse endelser, så det er kun et advarselstegn, ikke et bevis.</p>
+    </div>
+
+    <div class="kort">
+      <div class="kort-top"><h3>Forkortet link</h3><span class="point p1">1 point</span></div>
+      <span class="eksempel">bit.ly/3abc</span>
+      <h4>Hvorfor er det farligt?</h4>
+      <p>Et forkortet link skjuler, hvor du ender. Det kan føre til en helt almindelig side, men det kan også
+        føre til en svindelside, og det kan du ikke se, før du har klikket. Derfor finder Phishing Tjek selv ud af,
+        hvor linket fører hen, og tjekker også den adresse.</p>
+      <h4>Sådan tjekker du selv</h4>
+      <p>Indsæt linket i Phishing Tjek, før du klikker. Vær ekstra forsigtig med forkortede links i sms'er og e-mails fra afsendere, du ikke kender.</p>
+    </div>
+
+    <div class="kort">
+      <div class="kort-top"><h3>Ord som "login", "verify" eller "betaling"</h3><span class="point p1">1 point</span></div>
+      <span class="eksempel">…/verify, …/konto, …/betaling</span>
+      <h4>Hvorfor er det farligt?</h4>
+      <p>Svindelsider vil have dine oplysninger, så adressen indeholder ofte ord, der skal få dig til at logge ind
+        eller betale. Rigtige sider bruger også de ord, så alene er det et svagt tegn. Sammen med andre tegn er det en stærk advarsel.</p>
+      <h4>Sådan tjekker du selv</h4>
+      <p>Kom du til en loginside via et link i en besked? Så luk den, og gå selv til firmaets side, f.eks. via et bogmærke.</p>
+    </div>
+
+    <div class="kort">
+      <div class="kort-top"><h3>Meldt af Google Safe Browsing</h3><span class="point p3">Altid rød</span></div>
+      <h4>Hvorfor er det farligt?</h4>
+      <p>Google holder lister over sider, der er blevet meldt som mistænkt phishing eller skadelige. Står en side
+        på listen, har andre allerede opdaget, at den er farlig. (Kun når Google-tjekket er slået til i udvidelsens indstillinger.)</p>
+      <h4>Sådan tjekker du selv</h4>
+      <p>Gå tilbage. Siden kan stjæle oplysninger eller installere skadelige programmer, selv om den ser normal ud.</p>
+    </div>
+
+    <div class="hvis-klikket">
+      <h2>Har du allerede klikket eller tastet noget ind?</h2>
+      <ol>
+        <li>Luk siden med det samme.</li>
+        <li>Skift din adgangskode på den rigtige side, og alle steder hvor du bruger den samme.</li>
+        <li>Har du givet kortoplysninger eller godkendt noget med MitID? Ring til din bank med det samme.</li>
+        <li>Slå to-trins-login til, hvor du kan.</li>
+        <li>Fortæl det til nogen: familie, IT-afdelingen på skolen eller arbejdet. Det er ikke pinligt, det kan ske for alle.</li>
+      </ol>
+    </div>
+
+    <p class="note">
+      Phishing Tjek kan tage fejl begge veje. En side uden advarsler kan stadig være svindel,
+      og en side med advarsler kan være helt i orden. Brug din sunde fornuft, og stol på din mavefornemmelse.<br>
+      <a href="index.html">Tjek et link</a>
+    </p>
+  </div>
+</body>
+</html>
