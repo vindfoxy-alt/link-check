@@ -99,6 +99,43 @@
     summary { cursor: pointer; font-weight: 600; color: #c4e7f5; }
     details ol { margin: 12px 0 0; padding-left: 20px; line-height: 1.8; color: #c4e7f5; }
     details code { background: #0e2034; padding: 1px 6px; border-radius: 4px; }
+    .test-boks {
+      width: 100%;
+      max-width: 560px;
+      margin-top: 36px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(63, 230, 255, 0.25);
+      border-radius: 16px;
+      padding: 20px 24px;
+    }
+    .test-boks h2 { margin: 0 0 6px; font-size: 1.3rem; }
+    .test-boks p { margin: 0 0 14px; color: #9fc3d6; font-size: 0.9rem; line-height: 1.5; }
+    .test-liste { list-style: none; margin: 0; padding: 0; }
+    .test-liste li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      border-top: 1px solid rgba(63, 230, 255, 0.12);
+    }
+    .test-info { flex: 1; min-width: 0; }
+    .test-info a { color: #c4fcff; word-break: break-all; }
+    .test-info small { display: block; color: #7fa2b6; margin-top: 2px; }
+    .tag { font-size: 0.75rem; font-weight: 700; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+    .tag.groen { background: #d4edda; color: #14532d; }
+    .tag.gul { background: #fff3cd; color: #4a3500; }
+    .tag.roed { background: #f8d7da; color: #7a1010; }
+    .proev {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #2c4a63;
+      background: transparent;
+      color: #c4e7f5;
+      cursor: pointer;
+      font-size: 0.8rem;
+      white-space: nowrap;
+    }
+    .proev:hover { border-color: #3fd6ee; }
     @media (max-width: 480px) { .row { flex-direction: column; } }
   </style>
 </head>
@@ -109,7 +146,7 @@
 
   <div class="card">
     <div class="row">
-      <input id="link" placeholder="Indsæt et link her, fx paypa1.com/verify">
+      <input id="link" placeholder="Indsæt et link her">
       <button id="tjekKnap">Tjek link</button>
     </div>
     <div id="resultat"></div>
@@ -118,11 +155,69 @@
       Prøv et eksempel:
       <div>
         <button data-link="https://mitid.dk">mitid.dk</button>
-        <button data-link="https://paypa1.com/verify">paypa1.com/verify</button>
-        <button data-link="http://192.168.4.12/login">192.168.4.12/login</button>
+        <button data-link="https://paypa1-login.example/verify">paypa1-login.example</button>
+        <button data-link="http://192.0.2.1/login">192.0.2.1/login</button>
         <button data-link="https://bit.ly/3abc">bit.ly/3abc</button>
       </div>
     </div>
+  </div>
+
+  <div class="test-boks">
+    <h2>Test udvidelsen</h2>
+    <p>Har du installeret udvidelsen? Klik på et link herunder. Udvidelsen bør vise den advarsel, der står ud for linket, før siden åbner.
+      Uden udvidelsen kan du trykke <b>Tjek her</b> for at tjekke linket på siden i stedet.
+      Adresserne er testadresser, der aldrig kan føre til en rigtig side.</p>
+    <ul class="test-liste">
+      <li>
+        <div class="test-info">
+          <a href="https://mitid.dk">mitid.dk</a>
+          <small>Den rigtige MitID-side</small>
+        </div>
+        <span class="tag groen">Ingen advarsel</span>
+        <button class="proev" data-link="https://mitid.dk">Tjek her</button>
+      </li>
+      <li>
+        <div class="test-info">
+          <a href="https://example.com/login">example.com/login</a>
+          <small>Ordet "login" i adressen. Viser en lille gul boks, eller den store gule advarsel, hvis den er slået til</small>
+        </div>
+        <span class="tag gul">Gul advarsel</span>
+        <button class="proev" data-link="https://example.com/login">Tjek her</button>
+      </li>
+      <li>
+        <div class="test-info">
+          <a href="https://paypa1-login.example/verify">paypa1-login.example/verify</a>
+          <small>Ligner PayPal, men er stavet med 1</small>
+        </div>
+        <span class="tag roed">Rød advarsel</span>
+        <button class="proev" data-link="https://paypa1-login.example/verify">Tjek her</button>
+      </li>
+      <li>
+        <div class="test-info">
+          <a href="http://192.0.2.1/login">http://192.0.2.1/login</a>
+          <small>IP-adresse i stedet for et navn</small>
+        </div>
+        <span class="tag roed">Rød advarsel</span>
+        <button class="proev" data-link="http://192.0.2.1/login">Tjek her</button>
+      </li>
+      <li>
+        <div class="test-info">
+          <a href="https://mitid.dk.secure-check.invalid/">mitid.dk.secure-check.invalid</a>
+          <small>Mange underdomæner, ligner MitID</small>
+        </div>
+        <span class="tag roed">Rød advarsel</span>
+        <button class="proev" data-link="https://mitid.dk.secure-check.invalid/">Tjek her</button>
+      </li>
+      <li>
+        <div class="test-info">
+          <a href="http://user@mitid-login.invalid/konto">http://user@mitid-login.invalid/konto</a>
+          <small>@-trick, der skjuler den rigtige adresse</small>
+        </div>
+        <span class="tag roed">Rød advarsel</span>
+        <button class="proev" data-link="http://user@mitid-login.invalid/konto">Tjek her</button>
+      </li>
+    </ul>
+    <p style="margin: 14px 0 0;">Forkortede links: lav dit eget på tinyurl.com, fx til https://www.dr.dk, og indsæt det i feltet øverst.</p>
   </div>
 
   <div class="download-boks">
@@ -160,10 +255,11 @@
     });
 
     // Example buttons fill in the box and check it
-    document.querySelectorAll(".examples button").forEach((eksempel) => {
+    document.querySelectorAll(".examples button, .proev").forEach((eksempel) => {
       eksempel.addEventListener("click", () => {
         linkBox.value = eksempel.dataset.link;
         knap.click();
+        linkBox.scrollIntoView({ behavior: "smooth", block: "center" });
       });
     });
   </script>
