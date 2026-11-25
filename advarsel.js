@@ -28,9 +28,15 @@ function visAdvarsel(svar, ekstraGrunde) {
   }
 }
 
+const fraGoogle = params.get("google") === "1";
+
 // Først: vis advarslen for selve linket
-const svar = checkLink(farligUrl);
-visAdvarsel(svar, []);
+let svar = checkLink(farligUrl);
+if (fraGoogle && svar) {
+  svar = { point: svar.point + 10, grunde: svar.grunde };   // Googles liste gør altid siden rød
+  document.getElementById("google").hidden = false;
+}
+visAdvarsel(svar, fraGoogle ? ["Google Safe Browsing har meldt siden som mistænkt phishing eller skadelig."] : []);
 
 // Forkortet link? Find destinationen og tjek den også
 async function tjekDestination() {
@@ -52,6 +58,7 @@ async function tjekDestination() {
   if (destSvar && svar) {
     const samlet = { point: svar.point + destSvar.point, grunde: svar.grunde };
     const destGrunde = destSvar.grunde.map(g => "Destinationen: " + g);
+    if (fraGoogle) destGrunde.unshift("Google Safe Browsing har meldt siden som mistænkt phishing eller skadelig.");
     visAdvarsel(samlet, destGrunde);
   }
 }

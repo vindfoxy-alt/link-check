@@ -36,6 +36,13 @@ document.getElementById("tjekKnap").addEventListener("click", async () => {
     return;
   }
 
+  // Spørg Google Safe Browsing (kun hvis der er en nøgle i indstillingerne)
+  const google = await tjekSafeBrowsing(linkDerTjekkes);
+  if (google === true) {
+    svar.point += 10;
+    ekstra.push("Google Safe Browsing har meldt siden som mistænkt phishing eller skadelig. (Advisory provided by Google)");
+  }
+
   const linjer = ekstra.concat(svar.grunde);
 
   if (svar.point >= 3) {

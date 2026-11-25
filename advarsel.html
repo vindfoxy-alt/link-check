@@ -41,6 +41,8 @@
       font-family: Consolas, monospace;
     }
     #destination { word-break: break-all; font-weight: 600; }
+    #google { margin-top: 20px; font-size: 0.85rem; opacity: 0.9; }
+    #google a { color: inherit; }
     li { margin: 6px 0; }
     .knapper { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
     button {
@@ -68,6 +70,11 @@
     <p id="destination"></p>
     <p><b>Derfor:</b></p>
     <ul id="grunde"></ul>
+    <p id="google" hidden>
+      Advisory provided by Google:
+      <a href="https://developers.google.com/safe-browsing/v4/advisory" target="_blank">Safe Browsing Advisory</a>.
+      Læs mere om phishing på <a href="https://www.antiphishing.org" target="_blank">antiphishing.org</a>.
+    </p>
     <div class="knapper">
       <button id="tilbage">Gå tilbage</button>
       <button id="fortsaet">Fortsæt alligevel</button>

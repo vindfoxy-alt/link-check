@@ -7,7 +7,7 @@
     body { font-family: "Segoe UI", Arial, sans-serif; padding: 16px 20px; min-width: 360px; color: #1d2b36; }
     h2 { margin: 0 0 12px; font-size: 1.2rem; }
     label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
-    input { margin-top: 3px; width: 18px; height: 18px; }
+    input[type="checkbox"] { margin-top: 3px; width: 18px; height: 18px; }
     .forklaring { margin: 4px 0 0 28px; font-size: 0.85rem; color: #5a6b78; }
     #gemt { margin-top: 12px; font-size: 0.85rem; color: #1f7a3a; min-height: 1em; }
   </style>
@@ -23,6 +23,16 @@
     Røde sider får altid en advarsel med stopskilt. Gule sider får som standard kun et gult <b>?</b> på ikonet.
     Slå dette til, hvis du også vil se en advarsel, før en gul side åbner.
   </p>
+
+  <h2 style="margin-top: 20px;">Google Safe Browsing</h2>
+  <p class="forklaring" style="margin-left: 0;">
+    Tjekker også sider mod Googles liste over kendte farlige sider. Kræver en gratis API-nøgle fra Google.
+    Når den er slået til, sendes adressen på de sider, du åbner, til Google.
+  </p>
+  <input type="password" id="noegle" placeholder="Indsæt din API-nøgle" style="width: 100%; height: auto; margin-top: 8px; padding: 6px;">
+  <button id="gemNoegle" style="margin-top: 8px;">Gem nøgle</button>
+  <button id="fjernNoegle" style="margin-top: 8px;">Fjern nøgle</button>
+  <p id="noegleStatus" class="forklaring" style="margin-left: 0;"></p>
 
   <div id="gemt"></div>
 

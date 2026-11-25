@@ -24,10 +24,18 @@ chrome.webNavigation.onBeforeNavigate.addListener(async (details) => {
   if (!details.url.startsWith("http")) return;
 
   const svar = checkLink(details.url);
-  if (svar === null || svar.point === 0) return;   // sikre sider får ingen advarsel
+  if (svar === null) return;
+
+  // Spørg Google, hvis siden ikke allerede er rød
+  let google = false;
+  if (svar.point < 3) {
+    google = (await tjekSafeBrowsing(details.url)) === true;
+  }
+
+  if (svar.point === 0 && !google) return;          // sikre sider får ingen advarsel
 
   // Gule sider får kun en advarsel, hvis brugeren har slået det til
-  if (svar.point < 3) {
+  if (svar.point < 3 && !google) {
     const indstillinger = await chrome.storage.sync.get({ gulAdvarsel: false });
     if (!indstillinger.gulAdvarsel) return;
   }
@@ -38,7 +46,12 @@ chrome.webNavigation.onBeforeNavigate.addListener(async (details) => {
   const tilladte = gemt.tilladte || [];
   if (tilladte.includes(host)) return;
 
-  const advarsel = chrome.runtime.getURL("advarsel.html") + "?url=" + encodeURIComponent(details.url);
+  if (google) {
+    chrome.action.setBadgeText({ tabId: details.tabId, text: "!" });
+    chrome.action.setBadgeBackgroundColor({ tabId: details.tabId, color: "#d93025" });
+  }
+
+  const advarsel = chrome.runtime.getURL("advarsel.html") + "?url=" + encodeURIComponent(details.url) + (google ? "&google=1" : "");
   chrome.tabs.update(details.tabId, { url: advarsel });
 });
 

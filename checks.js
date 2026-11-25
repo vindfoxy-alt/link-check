@@ -64,3 +64,38 @@ async function findDestination(link) {
     return null;
   }
 }
+
+// Spørg Google Safe Browsing, om linket står på Googles liste over farlige sider.
+// Svarer true (på listen), false (ikke på listen) eller null (kunne ikke tjekke).
+async function tjekSafeBrowsing(link) {
+  if (typeof chrome === "undefined" || !chrome.storage) return null;   // hjemmesiden har ingen nøgle
+
+  const gemt = await chrome.storage.local.get({ safeBrowsingNoegle: "" });
+  const noegle = gemt.safeBrowsingNoegle;
+  if (!noegle) return null;                                             // ingen nøgle = slået fra
+
+  const fuldtLink = link.startsWith("http") ? link : "https://" + link;
+  try {
+    const svar = await fetch(
+      "https://safebrowsing.googleapis.com/v4/threatMatches:find?key=" + encodeURIComponent(noegle),
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          client: { clientId: "phishing-tjek", clientVersion: "1.6" },
+          threatInfo: {
+            threatTypes: ["SOCIAL_ENGINEERING", "MALWARE", "UNWANTED_SOFTWARE"],
+            platformTypes: ["ANY_PLATFORM"],
+            threatEntryTypes: ["URL"],
+            threatEntries: [{ url: fuldtLink }]
+          }
+        })
+      }
+    );
+    if (!svar.ok) return null;
+    const data = await svar.json();
+    return Array.isArray(data.matches) && data.matches.length > 0;
+  } catch {
+    return null;
+  }
+}
