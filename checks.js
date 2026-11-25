@@ -10,6 +10,10 @@ const kendteDomaener = ["mitid.dk", "borger.dk", "skat.dk", "postnord.dk",
 // Store, kendte sider, der aldrig får en advarsel (de kendte firmaer ovenfor er også med).
 // Disse fire er kun "sikre", ikke look-alike, fordi korte navne som "dr" giver falske alarmer.
 const sikreDomaener = kendteDomaener.concat(["live.com", "office.com", "dr.dk", "tv2.dk"]);
+// Firmaernes egne ekstra domæner, som ikke må tælle som look-alikes
+// (f.eks. ligger hjemmesider på GitHub Pages på github.io)
+const egneDomaener = { "github.com": ["github.io"], "google.com": ["google.dk"], "google.dk": ["google.com"] };
+
 const mistaenkeligeEndelser = [".xyz", ".top", ".click", ".ru", ".tk", ".zip"];
 const forkortere = ["bit.ly", "tinyurl.com", "t.co", "is.gd"];
 const farligeOrd = ["login", "verify", "konto", "betaling", "opdater", "secure"];
@@ -96,7 +100,8 @@ function checkLink(text) {
     .replace(/0/g, "o").replace(/1/g, "l");
   for (const d of kendteDomaener) {
     const navn = d.split(".")[0];
-    const erAegte = host === d || host.endsWith("." + d);
+    const aegteDomaener = [d].concat(egneDomaener[d] || []);
+    const erAegte = aegteDomaener.some(e => host === e || host.endsWith("." + e));
     if (normaliseret.includes(navn) && !erAegte) {
       point += 3;
       grunde.push(`Linket ligner ${d}, men er ikke det rigtige domæne.`);
