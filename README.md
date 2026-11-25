@@ -24,9 +24,9 @@ Browser extension that checks links for phishing. Paste a link, and it tells you
 
 ### Firefox
 
-1. Click **Download Extension** above and unzip the file.
+1. Download [phishing-tjek-firefox.zip](dist/phishing-tjek-firefox.zip). No need to unzip it.
 2. Go to `about:debugging` → **This Firefox** → **Load Temporary Add-on**.
-3. Choose the `manifest.json` file in the unzipped folder.
+3. Choose the downloaded `phishing-tjek-firefox.zip`.
 4. If short links or red link frames do not work, open **Add-ons and themes** → **Phishing Tjek** → **Permissions**, and allow access to all websites.
 
 A temporary add-on is removed when Firefox closes, so repeat this next time. Installing it permanently requires Mozilla to sign it.

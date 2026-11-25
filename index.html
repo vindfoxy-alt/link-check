@@ -87,6 +87,9 @@
     .note { max-width: 560px; margin-top: 28px; font-size: 0.85rem; color: #7fa2b6; text-align: center; }
     .download-boks { margin-top: 36px; max-width: 560px; width: 100%; text-align: center; }
     .download-boks .download { margin-top: 0; }
+    .knap-raekke { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .download.firefox { background: #ffd8b0; }
+    .download.firefox:hover { background: #ffe9d4; }
     .browsere { margin: 10px 0 0; font-size: 0.85rem; color: #9fc3d6; }
     details {
       margin-top: 14px;
@@ -221,12 +224,18 @@
   </div>
 
   <div class="download-boks">
-    <a class="download" href="https://github.com/vindfoxy-alt/link-check/archive/refs/heads/main.zip">
-      ⬇ Download udvidelsen
-    </a>
-    <p class="browsere">Virker i Chrome, Edge, Brave, Opera, Vivaldi og Firefox</p>
+    <div class="knap-raekke">
+      <a class="download" href="https://github.com/vindfoxy-alt/link-check/archive/refs/heads/main.zip">
+        ⬇ Chrome, Edge, Brave
+      </a>
+      <a class="download firefox" href="dist/phishing-tjek-firefox.zip" download>
+        ⬇ Firefox
+      </a>
+    </div>
+    <p class="browsere">Chrome-knappen virker også i Opera og Vivaldi. Firefox kræver version 140 eller nyere.</p>
     <details>
       <summary>Sådan installerer du den</summary>
+      <p style="margin: 10px 0 0; color: #9fc3d6;"><b>Chrome, Edge og Brave:</b></p>
       <ol>
         <li>Pak ZIP-filen ud (højreklik → <b>Udpak alle</b>).</li>
         <li>Åbn <code>chrome://extensions</code> (Edge: <code>edge://extensions</code>, Brave: <code>brave://extensions</code>).</li>
@@ -234,9 +243,9 @@
         <li>Klik <b>Indlæs upakket</b>, og vælg mappen med <code>manifest.json</code> i.</li>
         <li>Klik på puslespilsikonet, og fastgør <b>Phishing Tjek</b>.</li>
       </ol>
-      <p style="margin: 12px 0 0; color: #c4e7f5; line-height: 1.6;"><b>Firefox:</b> åbn <code>about:debugging</code> → <b>Denne Firefox</b> →
-        <b>Indlæs midlertidig tilføjelse</b>, og vælg filen <code>manifest.json</code>. Den forsvinder, når Firefox lukkes,
-        så gentag det næste gang.</p>
+      <p style="margin: 12px 0 0; color: #c4e7f5; line-height: 1.6;"><b>Firefox:</b> tryk på <b>Firefox</b>-knappen. Åbn så
+        <code>about:debugging</code> → <b>Denne Firefox</b> → <b>Indlæs midlertidig tilføjelse</b>, og vælg den downloadede
+        <code>phishing-tjek-firefox.zip</code> (den skal ikke pakkes ud). Den forsvinder, når Firefox lukkes, så gentag det næste gang.</p>
     </details>
   </div>
 
