@@ -46,3 +46,12 @@ document.getElementById("tjekKnap").addEventListener("click", async () => {
     visResultat(resultat, "🟢 Ser sikkert ud", "#d4edda", linjer.concat(["Vi fandt ingen tydelige tegn på phishing."]));
   }
 });
+
+// Link til indstillinger (findes kun i udvidelsen, ikke på hjemmesiden)
+const indstillingerLink = document.getElementById("indstillinger");
+if (indstillingerLink) {
+  indstillingerLink.addEventListener("click", (event) => {
+    event.preventDefault();
+    chrome.runtime.openOptionsPage();
+  });
+}

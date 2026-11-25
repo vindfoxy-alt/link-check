@@ -1,10 +1,15 @@
 {
   "manifest_version": 3,
   "name": "Phishing Tjek",
-  "version": "1.3",
+  "version": "1.5",
   "description": "Tjek om et link ser mistænkeligt ud",
-  "permissions": ["tabs", "webNavigation", "storage"],
+  "homepage_url": "https://vindfoxy-alt.github.io/link-check/",
+  "permissions": ["tabs", "webNavigation", "storage", "scripting"],
   "host_permissions": ["<all_urls>"],
+  "options_ui": {
+    "page": "indstillinger.html",
+    "open_in_tab": false
+  },
   "background": {
     "service_worker": "background.js"
   },

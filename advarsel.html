@@ -14,7 +14,7 @@
       font-family: "Segoe UI", Arial, sans-serif;
     }
     /* Rød advarsel */
-    body.roed { background: #7a1010; color: white; }
+    body.roed { background: #5c0b0b; color: white; }
     body.roed #tilbage { background: white; color: #7a1010; }
     body.roed #fortsaet { color: #ffd6d6; border-color: #ffd6d6; }
 
@@ -25,6 +25,11 @@
 
     .boks { max-width: 620px; padding: 32px; }
     img { width: 72px; }
+
+    /* Stopskilt: kun på den røde side */
+    #stopskilt { width: 120px; height: 120px; display: none; }
+    body.roed #stopskilt { display: block; }
+    body.roed #logo { display: none; }
     h1 { font-size: 2rem; margin: 16px 0 8px; }
     #adresse {
       display: block;
@@ -50,7 +55,13 @@
 </head>
 <body>
   <div class="boks">
-    <img src="icons/icon128.png" alt="">
+    <img id="logo" src="icons/icon128.png" alt="">
+    <svg id="stopskilt" viewBox="0 0 100 100" role="img" aria-label="Stop">
+      <polygon points="30,2 70,2 98,30 98,70 70,98 30,98 2,70 2,30" fill="white"/>
+      <polygon points="32,7 68,7 93,32 93,68 68,93 32,93 7,68 7,32" fill="#d32f2f"/>
+      <text x="50" y="61" text-anchor="middle" font-family="Arial, sans-serif"
+            font-size="27" font-weight="bold" fill="white">STOP</text>
+    </svg>
     <h1 id="overskrift"></h1>
     <p id="beskrivelse"></p>
     <code id="adresse"></code>
