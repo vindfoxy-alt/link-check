@@ -12,6 +12,18 @@ function lavMenu() {
   });
 }
 api.runtime.onInstalled.addListener(lavMenu);
+
+// Mine egne GitHub Pages-sider står på listen "Sider, du stoler på" fra starten.
+// Det sker kun én gang, så hvis brugeren fjerner siden under Indstillinger, kommer den ikke igen.
+const standardBetroede = ["vindfoxy-alt.github.io"];
+api.runtime.onInstalled.addListener(async () => {
+  const gemt = await api.storage.local.get({ betroedeSider: [], standardTilfoejet: false });
+  if (gemt.standardTilfoejet) return;
+  for (const side of standardBetroede) {
+    if (!gemt.betroedeSider.includes(side)) gemt.betroedeSider.push(side);
+  }
+  await api.storage.local.set({ betroedeSider: gemt.betroedeSider, standardTilfoejet: true });
+});
 api.runtime.onStartup.addListener(lavMenu);
 
 api.contextMenus.onClicked.addListener((info) => {

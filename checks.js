@@ -33,8 +33,7 @@ const kendteDomaener = ["mitid.dk", "borger.dk", "skat.dk", "postnord.dk",
 
 // Store, kendte sider, der aldrig får en advarsel (de kendte firmaer ovenfor er også med).
 // Disse er kun "sikre", ikke look-alike, fordi korte navne som "dr" giver falske alarmer.
-const sikreDomaener = kendteDomaener.concat(["live.com", "office.com", "microsoftonline.com", "dr.dk", "tv2.dk",
-  "vindfoxy-alt.github.io"]);   // mine egne GitHub Pages-sider
+const sikreDomaener = kendteDomaener.concat(["live.com", "office.com", "microsoftonline.com", "dr.dk", "tv2.dk"]);
 // Firmaernes egne ekstra domæner, som ikke må tælle som look-alikes
 // (f.eks. ligger hjemmesider på GitHub Pages på github.io)
 const egneDomaener = { "github.com": ["github.io"], "google.com": ["google.dk"], "google.dk": ["google.com"],
