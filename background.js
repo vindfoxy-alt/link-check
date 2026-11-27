@@ -2,7 +2,9 @@
 if (typeof importScripts === "function") importScripts("checks.js");
 
 // 0) Højreklik-menu: "Tjek dette link med Phishing Tjek"
+// Firefox på mobil har ingen højreklik-menu (contextMenus findes ikke), så vi tjekker først.
 function lavMenu() {
+  if (!api.contextMenus) return;
   api.contextMenus.removeAll().then(() => {
     api.contextMenus.create({
       id: "tjekLink",
@@ -12,6 +14,20 @@ function lavMenu() {
   });
 }
 api.runtime.onInstalled.addListener(lavMenu);
+api.runtime.onStartup.addListener(lavMenu);
+
+if (api.contextMenus) {
+  api.contextMenus.onClicked.addListener((info) => {
+    if (info.menuItemId !== "tjekLink") return;
+    // Åbn et lille vindue med resultatet. Linket selv bliver IKKE åbnet.
+    api.windows.create({
+      url: api.runtime.getURL("tjek.html") + "?url=" + encodeURIComponent(info.linkUrl),
+      type: "popup",
+      width: 460,
+      height: 520
+    });
+  });
+}
 
 // Mine egne GitHub Pages-sider står på listen "Sider, du stoler på" fra starten.
 // Det sker kun én gang, så hvis brugeren fjerner siden under Indstillinger, kommer den ikke igen.
@@ -23,18 +39,6 @@ api.runtime.onInstalled.addListener(async () => {
     if (!gemt.betroedeSider.includes(side)) gemt.betroedeSider.push(side);
   }
   await api.storage.local.set({ betroedeSider: gemt.betroedeSider, standardTilfoejet: true });
-});
-api.runtime.onStartup.addListener(lavMenu);
-
-api.contextMenus.onClicked.addListener((info) => {
-  if (info.menuItemId !== "tjekLink") return;
-  // Åbn et lille vindue med resultatet. Linket selv bliver IKKE åbnet.
-  api.windows.create({
-    url: api.runtime.getURL("tjek.html") + "?url=" + encodeURIComponent(info.linkUrl),
-    type: "popup",
-    width: 460,
-    height: 520
-  });
 });
 
 // 1) Badge på ikonet (som før)
