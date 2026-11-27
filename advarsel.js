@@ -50,6 +50,21 @@ async function lavMeldLink(grunde) {
 
 const fraGoogle = params.get("google") === "1";
 
+// Ingen advarselstegn og ikke fra Google? Så er siden sikker (f.eks. hvis baggrunden
+// kørte en gammel version af koden). Husk den for denne gang, og åbn den med det samme.
+async function aabnHvisSikker() {
+  const tjek = checkLink(farligUrl);
+  if (fraGoogle || !tjek || tjek.point > 0) return false;
+  const host = new URL(farligUrl).hostname;
+  const gemt = await api.storage.session.get("tilladte");
+  const tilladte = gemt.tilladte || [];
+  tilladte.push(host);
+  await api.storage.session.set({ tilladte: tilladte });
+  location.replace(farligUrl);
+  return true;
+}
+aabnHvisSikker();
+
 // Først: vis advarslen for selve linket
 let svar = checkLink(farligUrl);
 if (fraGoogle && svar) {
