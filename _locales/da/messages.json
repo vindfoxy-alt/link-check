@@ -1,0 +1,8 @@
+{
+  "appName": {
+    "message": "Phishing Tjek"
+  },
+  "appDescription": {
+    "message": "Tjek om et link ser mistænkeligt ud, og få en advarsel, før phishing-sider åbner"
+  }
+}

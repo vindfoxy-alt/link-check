@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title data-i18n="tjekTitel">Tjek link – Phishing Tjek</title>
+  <link rel="icon" href="icons/icon32.png">
+  <style>
+    body { font-family: "Segoe UI", Arial, sans-serif; padding: 16px 20px; color: #1d2b36; }
+    h2 { margin: 0 0 10px; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; }
+    h2 img { width: 28px; }
+    #adresse {
+      display: block; padding: 8px 10px; background: #eef2f5; border-radius: 6px;
+      font-family: Consolas, monospace; font-size: 0.85rem; word-break: break-all;
+    }
+    #resultat { margin-top: 12px; padding: 10px; border-radius: 8px; line-height: 1.5; word-break: break-word; }
+    button { margin-top: 14px; padding: 8px 18px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2><img src="icons/icon48.png" alt=""><span data-i18n="tjekOverskrift">Linket, du højreklikkede på</span></h2>
+  <code id="adresse"></code>
+  <div id="resultat"></div>
+  <button id="luk" data-i18n="luk">Luk</button>
+  <script src="checks.js"></script>
+  <script src="popup.js"></script>
+  <script src="tjek.js"></script>
+</body>
+</html>

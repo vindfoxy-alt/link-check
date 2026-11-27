@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <title data-i18n="statTitel">Statistik – Phishing Tjek</title>
+  <link rel="icon" href="icons/icon32.png">
+  <style>
+    body { font-family: "Segoe UI", Arial, sans-serif; max-width: 760px; margin: 40px auto; padding: 0 20px; color: #1d2b36; }
+    h1 { display: flex; align-items: center; gap: 10px; font-size: 1.6rem; }
+    h1 img { width: 40px; }
+    h2 { font-size: 1.1rem; margin: 28px 0 10px; }
+    .fliser { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+    .flise { padding: 14px 16px; border-radius: 12px; background: #f4f8fb; border: 1px solid #dbe5ec; }
+    .tal { font-size: 2rem; font-weight: 700; line-height: 1.1; }
+    .navn { font-size: 0.85rem; color: #5a6b78; margin-top: 4px; }
+    .roed .tal { color: #b3261e; }
+    .gul .tal { color: #8a6100; }
+    .note { font-size: 0.85rem; color: #5a6b78; margin-top: 28px; }
+    button { margin-top: 8px; padding: 6px 14px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1><img src="icons/icon48.png" alt=""><span data-i18n="statOverskrift">Phishing Tjek: statistik</span></h1>
+
+  <h2 data-i18n="statMaaned">Denne måned</h2>
+  <div class="fliser" id="maaned"></div>
+
+  <h2 data-i18n="statIalt">I alt</h2>
+  <div class="fliser" id="ialt"></div>
+
+  <p class="note" data-i18n="statNote">Tallene gemmes kun på denne computer og bliver aldrig sendt nogen steder hen.</p>
+  <button id="nulstil" data-i18n="statNulstil">Nulstil statistik</button>
+
+  <script src="checks.js"></script>
+  <script src="statistik.js"></script>
+</body>
+</html>

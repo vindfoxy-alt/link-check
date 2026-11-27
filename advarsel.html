@@ -2,7 +2,7 @@
 <html lang="da">
 <head>
   <meta charset="utf-8">
-  <title>Advarsel – Phishing Tjek</title>
+  <title data-i18n="advarselTitel">Advarsel – Phishing Tjek</title>
   <link rel="icon" href="icons/icon32.png">
   <style>
     body {
@@ -54,6 +54,12 @@
     }
     #tilbage { border: none; font-weight: 700; }
     #fortsaet { background: transparent; border: 1px solid; }
+    #stol { background: transparent; border: 1px solid; color: inherit; }
+    body.roed #stol { display: none; }   /* røde sider kan man ikke stole på */
+    .knap {
+      display: inline-block; padding: 12px 22px; font-size: 1rem; border-radius: 8px;
+      border: 1px solid; color: inherit; text-decoration: none;
+    }
   </style>
 </head>
 <body>
@@ -69,17 +75,19 @@
     <p id="beskrivelse"></p>
     <code id="adresse"></code>
     <p id="destination"></p>
-    <p><b>Derfor:</b></p>
+    <p><b data-i18n="derfor">Derfor:</b></p>
     <ul id="grunde"></ul>
-    <p><a id="hvorfor" href="https://vindfoxy-alt.github.io/link-check/hvorfor.html" target="_blank">Hvorfor er det farligt? Læs om advarselstegnene →</a></p>
+    <p><a id="hvorfor" href="https://vindfoxy-alt.github.io/link-check/hvorfor.html" target="_blank" data-i18n="hvorforLang">Hvorfor er det farligt? Læs om advarselstegnene →</a></p>
     <p id="google" hidden>
       Advisory provided by Google:
       <a href="https://developers.google.com/safe-browsing/v4/advisory" target="_blank">Safe Browsing Advisory</a>.
-      Læs mere om phishing på <a href="https://www.antiphishing.org" target="_blank">antiphishing.org</a>.
+      <span data-i18n="googleMere">Læs mere om phishing på</span> <a href="https://www.antiphishing.org" target="_blank">antiphishing.org</a>.
     </p>
     <div class="knapper">
-      <button id="tilbage">Gå tilbage</button>
-      <button id="fortsaet">Fortsæt alligevel</button>
+      <button id="tilbage" data-i18n="tilbage">Gå tilbage</button>
+      <button id="fortsaet" data-i18n="fortsaet">Fortsæt alligevel</button>
+      <button id="stol" data-i18n="stolKnap">Jeg stoler på denne side</button>
+      <a id="meld" class="knap" href="#" data-i18n="meldKnap">✉ Meld til IT</a>
     </div>
   </div>
   <script src="checks.js"></script>

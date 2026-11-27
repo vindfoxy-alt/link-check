@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <title data-i18n="qrTitel">Tjek en QR-kode – Phishing Tjek</title>
+  <link rel="icon" href="icons/icon32.png">
+  <style>
+    body { font-family: "Segoe UI", Arial, sans-serif; max-width: 640px; margin: 40px auto; padding: 0 20px; color: #1d2b36; }
+    h1 { display: flex; align-items: center; gap: 10px; font-size: 1.6rem; }
+    h1 img { width: 40px; }
+    #felt {
+      display: block; padding: 40px 20px; text-align: center; cursor: pointer;
+      border: 2px dashed #8aa4b8; border-radius: 12px; background: #f4f8fb; color: #3b5568;
+    }
+    #felt.over { background: #e1f0fb; border-color: #1a9ec2; }
+    #fil { display: none; }
+    #billede { display: block; max-width: 220px; max-height: 220px; margin: 16px auto 0; border-radius: 8px; }
+    #indhold {
+      display: block; margin-top: 16px; padding: 8px 10px; background: #eef2f5; border-radius: 6px;
+      font-family: Consolas, monospace; font-size: 0.9rem; word-break: break-all;
+    }
+    #indhold:empty { display: none; }
+    #resultat { margin-top: 12px; padding: 12px; border-radius: 8px; line-height: 1.5; word-break: break-word; }
+    .tip { font-size: 0.85rem; color: #5a6b78; }
+  </style>
+</head>
+<body>
+  <h1><img src="icons/icon48.png" alt=""><span data-i18n="qrOverskrift">Tjek en QR-kode</span></h1>
+  <p data-i18n="qrForklaring">Svindlere sætter falske QR-koder på plakater, parkeringsautomater og i e-mails. Her kan du se, hvor en QR-kode fører hen, før du åbner den.</p>
+
+  <label id="felt" for="fil">
+    <span data-i18n="qrFelt">📷 Klik for at vælge et billede, træk det herind, eller tryk Ctrl+V for at sætte det ind</span>
+  </label>
+  <input type="file" id="fil" accept="image/*">
+  <p class="tip" data-i18n="qrTip">Tip: Tag et skærmbillede af QR-koden (Windows: Win+Shift+S), og tryk Ctrl+V her. Billedet forlader aldrig din computer.</p>
+
+  <img id="billede" alt="" hidden>
+  <code id="indhold"></code>
+  <div id="resultat"></div>
+
+  <script src="checks.js"></script>
+  <script src="jsQR.js"></script>
+  <script src="popup.js"></script>
+  <script src="qr.js"></script>
+</body>
+</html>

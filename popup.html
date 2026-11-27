@@ -6,20 +6,23 @@
     body { width: 300px; font-family: Arial; padding: 10px; }
     input { width: 100%; padding: 6px; box-sizing: border-box; }
     button { margin-top: 8px; width: 100%; padding: 8px; cursor: pointer; }
-    #resultat { margin-top: 10px; padding: 8px; border-radius: 6px; }
-    .bund { display: flex; justify-content: space-between; margin-top: 12px; font-size: 12px; }
+    #qrKnap { background: transparent; border: 1px dashed #888; }
+    #resultat { margin-top: 10px; padding: 8px; border-radius: 6px; word-break: break-word; }
+    .bund { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px; margin-top: 12px; font-size: 12px; }
     .bund a { color: #555; }
   </style>
 </head>
 <body>
   <h3>Phishing Tjek</h3>
-  <input id="link" placeholder="Indsæt et link her">
-  <button id="tjekKnap">Tjek link</button>
+  <input id="link" placeholder="Indsæt et link her" data-i18n-placeholder="popupFelt">
+  <button id="tjekKnap" data-i18n="popupKnap">Tjek link</button>
+  <button id="qrKnap" data-i18n="popupQR">📷 Tjek en QR-kode</button>
   <div id="resultat"></div>
   <div class="bund">
-    <a href="https://vindfoxy-alt.github.io/link-check/" target="_blank">🔗 Test-siden</a>
-    <a href="https://vindfoxy-alt.github.io/link-check/hvorfor.html" target="_blank">❓ Hvorfor?</a>
-    <a href="#" id="indstillinger">⚙ Indstillinger</a>
+    <a href="https://vindfoxy-alt.github.io/link-check/" target="_blank" data-i18n="popupTestside">🔗 Test-siden</a>
+    <a href="https://vindfoxy-alt.github.io/link-check/hvorfor.html" target="_blank" data-i18n="popupHvorfor">❓ Hvorfor?</a>
+    <a href="#" id="statistikLink" data-i18n="popupStatistik">📊 Statistik</a>
+    <a href="#" id="indstillinger" data-i18n="popupIndstillinger">⚙ Indstillinger</a>
   </div>
   <script src="checks.js"></script>
   <script src="popup.js"></script>

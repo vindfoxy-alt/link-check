@@ -1,10 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "Phishing Tjek",
-  "version": "1.9.1",
-  "description": "Tjek om et link ser mistænkeligt ud",
+  "name": "__MSG_appName__",
+  "version": "2.0",
+  "description": "__MSG_appDescription__",
+  "default_locale": "en",
   "homepage_url": "https://vindfoxy-alt.github.io/link-check/",
-  "permissions": ["tabs", "webNavigation", "storage", "scripting"],
+  "permissions": ["tabs", "webNavigation", "storage", "scripting", "contextMenus"],
   "host_permissions": ["<all_urls>"],
   "options_ui": {
     "page": "indstillinger.html",
@@ -13,7 +14,7 @@
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
-      "js": ["checks.js", "fremhaev.js"],
+      "js": ["checks.js", "fremhaev.js", "adgangskode.js"],
       "run_at": "document_idle"
     }
   ],

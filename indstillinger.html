@@ -2,40 +2,50 @@
 <html lang="da">
 <head>
   <meta charset="utf-8">
-  <title>Indstillinger – Phishing Tjek</title>
+  <title data-i18n="indstTitel">Indstillinger – Phishing Tjek</title>
   <style>
     body { font-family: "Segoe UI", Arial, sans-serif; padding: 16px 20px; min-width: 360px; color: #1d2b36; }
-    h2 { margin: 0 0 12px; font-size: 1.2rem; }
-    label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
+    h2 { margin: 20px 0 8px; font-size: 1.2rem; }
+    h2:first-child { margin-top: 0; }
+    label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; font-weight: 700; }
     input[type="checkbox"] { margin-top: 3px; width: 18px; height: 18px; }
-    .forklaring { margin: 4px 0 0 28px; font-size: 0.85rem; color: #5a6b78; }
+    .forklaring { margin: 4px 0 0; font-size: 0.85rem; color: #5a6b78; }
+    .felt { width: 100%; box-sizing: border-box; margin-top: 8px; padding: 6px; }
+    button { margin-top: 8px; }
     #gemt { margin-top: 12px; font-size: 0.85rem; color: #1f7a3a; min-height: 1em; }
   </style>
 </head>
 <body>
-  <h2>Indstillinger</h2>
+  <h2 data-i18n="indstTitelKort">Indstillinger</h2>
 
   <label>
     <input type="checkbox" id="gulAdvarsel">
-    <span><b>Vis advarsel for mistænkelige sider (gul)</b></span>
+    <span data-i18n="indstGul">Vis advarsel for mistænkelige sider (gul)</span>
   </label>
-  <p class="forklaring">
-    Røde sider får altid en advarsel med stopskilt. Gule sider får som standard kun et gult <b>?</b> på ikonet.
-    Slå dette til, hvis du også vil se en advarsel, før en gul side åbner.
-  </p>
+  <p class="forklaring" data-i18n="indstGulForklaring">Røde sider får altid en advarsel med stopskilt. Gule sider får som standard kun et gult ? på ikonet og en lille boks. Slå dette til, hvis du også vil se en advarsel, før en gul side åbner.</p>
 
-  <h2 style="margin-top: 20px;">Google Safe Browsing</h2>
-  <p class="forklaring" style="margin-left: 0;">
-    Tjekker også sider mod Googles liste over kendte farlige sider. Kræver en gratis API-nøgle fra Google.
-    Når den er slået til, sendes adressen på de sider, du åbner, til Google.
-  </p>
-  <input type="password" id="noegle" placeholder="Indsæt din API-nøgle" style="width: 100%; height: auto; margin-top: 8px; padding: 6px;">
-  <button id="gemNoegle" style="margin-top: 8px;">Gem nøgle</button>
-  <button id="fjernNoegle" style="margin-top: 8px;">Fjern nøgle</button>
-  <p id="noegleStatus" class="forklaring" style="margin-left: 0;"></p>
+  <h2>Google Safe Browsing</h2>
+  <p class="forklaring" data-i18n="indstGoogleForklaring">Tjekker også sider mod Googles liste over kendte farlige sider. Kræver en gratis API-nøgle fra Google. Når den er slået til, sendes adressen på de sider, du åbner, til Google.</p>
+  <input type="password" id="noegle" class="felt" placeholder="Indsæt din API-nøgle" data-i18n-placeholder="indstNoegleFelt">
+  <button id="gemNoegle" data-i18n="indstGemNoegle">Gem nøgle</button>
+  <button id="fjernNoegle" data-i18n="indstFjernNoegle">Fjern nøgle</button>
+  <p id="noegleStatus" class="forklaring"></p>
+
+  <h2 data-i18n="meldOverskrift">Meld til IT</h2>
+  <p class="forklaring" data-i18n="indstEmailForklaring">E-mailadressen, som Meld til IT-knappen på advarselssiden skriver til, f.eks. din skoles eller arbejdsplads' IT-support. Lad den være tom, hvis du selv vil skrive modtageren.</p>
+  <input type="email" id="itEmail" class="felt" placeholder="it-support@eksempel.dk" data-i18n-placeholder="indstEmailFelt">
+  <button id="gemEmail" data-i18n="indstGemEmail">Gem e-mail</button>
+
+  <h2 data-i18n="indstBetroede">Sider, du stoler på</h2>
+  <p class="forklaring" data-i18n="indstBetroedeForklaring">Gule sider, du har markeret med Jeg stoler på denne side. De får ingen gul advarsel eller boks. Røde sider advares der altid om.</p>
+  <ul id="betroedeListe" style="padding-left: 18px; font-size: 0.9rem;"></ul>
+
+  <h2 data-i18n="statTitelKort">Statistik</h2>
+  <p class="forklaring"><a href="#" id="statistikLink" data-i18n="indstStatistikLink">📊 Se, hvor mange gange Phishing Tjek har advaret dig →</a></p>
 
   <div id="gemt"></div>
 
+  <script src="checks.js"></script>
   <script src="indstillinger.js"></script>
 </body>
 </html>
